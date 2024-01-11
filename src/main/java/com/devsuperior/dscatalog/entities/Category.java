@@ -5,13 +5,13 @@ import lombok.*;
 
 import java.io.Serial;
 import java.io.Serializable;
-@NoArgsConstructor
-@AllArgsConstructor
-@EqualsAndHashCode(of = "id")
 @Getter
 @Setter
 @Entity
-@Table
+@Table(name = "tb_category")
+@EqualsAndHashCode(of = "id")
+@NoArgsConstructor
+@AllArgsConstructor
 public class Category implements Serializable {
     @Serial
     private static final long serialVersionUID = 1L;
