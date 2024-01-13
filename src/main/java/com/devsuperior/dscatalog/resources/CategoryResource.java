@@ -29,7 +29,12 @@ public class CategoryResource {
     public ResponseEntity<CategoryDTO> insert(@RequestBody @Valid CategoryDTO dto){
         dto = categoryService.insert(dto);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(dto.getId()).toUri();
-
         return ResponseEntity.created(uri).body(dto);
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<CategoryDTO> update(@PathVariable Long id, @RequestBody @Valid CategoryDTO dto){
+        dto = categoryService.update(id, dto);
+        return ResponseEntity.ok().body(dto);
     }
 }
