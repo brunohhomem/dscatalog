@@ -14,11 +14,13 @@ import java.util.List;
 @RequestMapping("/categories")
 public class CategoryResource {
     @Autowired private CategoryService categoryService;
+
     @GetMapping
     public ResponseEntity<List<CategoryDTO>> findAll(){
         List<CategoryDTO> list = categoryService.findAll();
         return ResponseEntity.ok().body(list);
     }
+
     @GetMapping("/{id}")
     public ResponseEntity<CategoryDTO> findById(@PathVariable Long id){
         CategoryDTO dto = categoryService.findById(id);
@@ -36,5 +38,11 @@ public class CategoryResource {
     public ResponseEntity<CategoryDTO> update(@PathVariable Long id, @RequestBody @Valid CategoryDTO dto){
         dto = categoryService.update(id, dto);
         return ResponseEntity.ok().body(dto);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<CategoryDTO> delete(@PathVariable Long id){
+        categoryService.delete(id);
+        return ResponseEntity.noContent().build();
     }
 }
