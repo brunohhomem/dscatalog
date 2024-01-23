@@ -57,15 +57,18 @@ public class CategoryService {
             throw new ResourceNotFoundException("Id not found: " + id);
         }
     }
+
+    @Transactional
     public void delete(Long id) {
+        if(!categoryRepository.existsById(id)){
+            throw new ResourceNotFoundException("Id not found: " + id);
+        }
+
         try {
             categoryRepository.deleteById(id);
         }
-        catch (EmptyResultDataAccessException e){
-            throw new ResourceNotFoundException("Id not found: " + id);
+        catch (DataIntegrityViolationException e) {
+            throw new DatabaseException("Integrity violation");
         }
-        catch (DataIntegrityViolationException e){
-           throw new DatabaseException("Integrity violation");
-       }
     }
 }

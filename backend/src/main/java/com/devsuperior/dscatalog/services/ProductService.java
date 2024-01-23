@@ -24,12 +24,6 @@ public class ProductService {
     @Autowired private ProductRepository productRepository;
     @Autowired private CategoryRepository categoryRepository;
 
-//    @Transactional(readOnly = true)
-//    public List<ProductDTO> findAll(){
-//        List<Product> list = productRepository.findAll();
-//        return list.stream().map(x -> new ProductDTO(x)).collect(Collectors.toList());
-//    }
-
     @Transactional(readOnly = true)
     public Page<ProductDTO> findAllPaged(Pageable pageable) {
         Page<Product> list = productRepository.findAll(pageable);
@@ -61,16 +55,19 @@ public class ProductService {
             throw new ResourceNotFoundException("Id not found: " + id);
         }
     }
+
+    @Transactional
     public void delete(Long id) {
+        if(!productRepository.existsById(id)){
+            throw new ResourceNotFoundException("Id not found: " + id);
+        }
+
         try {
             productRepository.deleteById(id);
         }
-        catch (EmptyResultDataAccessException e){
-            throw new ResourceNotFoundException("Id not found: " + id);
+        catch (DataIntegrityViolationException e) {
+            throw new DatabaseException("Integrity violation");
         }
-        catch (DataIntegrityViolationException e){
-           throw new DatabaseException("Integrity violation");
-       }
     }
 
     private void copyDtoToEntity(ProductDTO dto, Product entity) {
