@@ -1,8 +1,6 @@
 package com.devsuperior.dscatalog.entities;
 
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.*;
 
 import java.io.Serial;
@@ -10,6 +8,8 @@ import java.io.Serializable;
 
 @Getter
 @Setter
+@Entity
+@Table(name = "tb_role")
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(of = "id")

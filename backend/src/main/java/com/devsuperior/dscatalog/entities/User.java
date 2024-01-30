@@ -1,8 +1,6 @@
 package com.devsuperior.dscatalog.entities;
 
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.*;
 
 import java.io.Serial;
@@ -12,6 +10,8 @@ import java.util.Set;
 
 @Getter
 @Setter
+@Entity
+@Table(name = "tb_user")
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(of = "id")
@@ -28,5 +28,10 @@ public class User implements Serializable {
     private String password;
 
     @Setter(AccessLevel.NONE)
+    @ManyToMany
+    @JoinTable(
+            name = "tb_user_role",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles = new HashSet<>();
 }
