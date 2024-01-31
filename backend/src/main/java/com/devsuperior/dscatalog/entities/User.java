@@ -28,7 +28,7 @@ public class User implements Serializable {
     private String password;
 
     @Setter(AccessLevel.NONE)
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER) //Forçar que sempre que buscarmos um usuário, trazemos a role do user
     @JoinTable(
             name = "tb_user_role",
             joinColumns = @JoinColumn(name = "user_id"),
