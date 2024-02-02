@@ -19,8 +19,6 @@ public class ProductResource {
 
     @GetMapping
     public ResponseEntity<Page<ProductDTO>> findAllPaged(Pageable pageable){
-        //Parametros: page, size, sort
-
         Page<ProductDTO> list = productService.findAllPaged(pageable);
         return ResponseEntity.ok().body(list);
     }

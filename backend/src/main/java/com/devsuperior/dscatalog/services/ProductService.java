@@ -76,7 +76,6 @@ public class ProductService {
         entity.setPrice(dto.getPrice());
         entity.setImgUrl(dto.getImgUrl());
         entity.setDate(dto.getDate());
-
         entity.getCategories().clear(); // limpa as categorias
 
         for (CategoryDTO catDto: dto.getCategories()){

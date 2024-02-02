@@ -20,12 +20,6 @@ import java.util.Optional;
 public class CategoryService {
     @Autowired private CategoryRepository categoryRepository;
 
-//    @Transactional(readOnly = true)
-//    public List<CategoryDTO> findAll(){
-//        List<Category> list = categoryRepository.findAll();
-//        return list.stream().map(x -> new CategoryDTO(x)).collect(Collectors.toList());
-//    }
-
     @Transactional(readOnly = true)
     public Page<CategoryDTO> findAllPaged(Pageable pageable) {
         Page<Category> list = categoryRepository.findAll(pageable);
