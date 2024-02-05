@@ -9,10 +9,6 @@ import lombok.Setter;
 
 import java.io.Serial;
 
-@Getter
-@Setter
-@NoArgsConstructor
-@AllArgsConstructor
 @UserUpdateValid
 public class UserUpdateDTO extends UserDTO {
 
