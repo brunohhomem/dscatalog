@@ -1,17 +1,18 @@
 package com.devsuperior.dscatalog.dto;
 
-import com.devsuperior.dscatalog.entities.User;
-import lombok.*;
+import com.devsuperior.dscatalog.services.validation.UserInsertValid;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.io.Serial;
-import java.io.Serializable;
-import java.util.HashSet;
-import java.util.Set;
 
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@UserInsertValid
 public class UserInsertDTO extends UserDTO {
     @Serial
     private static final long serialVersionUID = 1L;
