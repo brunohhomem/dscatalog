@@ -2,6 +2,7 @@ package com.devsuperior.dscatalog.dto;
 
 import com.devsuperior.dscatalog.entities.User;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 import lombok.*;
 
 import java.io.Serial;
@@ -19,6 +20,7 @@ public class UserDTO implements Serializable {
     private Long id;
 
     @NotBlank(message = "Campo Obrigatório")
+    @Size(min = 3, max = 60, message = "Nome deve ter entre 3 e 60 caracteres.")
     private String firstName;
     private String lastName;
 
