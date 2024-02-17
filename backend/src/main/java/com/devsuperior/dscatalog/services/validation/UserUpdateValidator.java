@@ -16,14 +16,12 @@ import java.util.Map;
 
 public class UserUpdateValidator implements ConstraintValidator<UserUpdateValid, UserUpdateDTO> {
 
-    @Autowired
-    private HttpServletRequest request;
+    @Autowired private HttpServletRequest request;
 
     @Autowired private UserRepository repository;
 
     @Override
-    public void initialize(UserUpdateValid ann) {
-    }
+    public void initialize(UserUpdateValid ann) {}
 
     @Override
     public boolean isValid(UserUpdateDTO dto, ConstraintValidatorContext context) {
@@ -45,6 +43,6 @@ public class UserUpdateValidator implements ConstraintValidator<UserUpdateValid,
             context.buildConstraintViolationWithTemplate(e.getMessage()).addPropertyNode(e.getFieldName())
                     .addConstraintViolation();
         }
-        return list.isEmpty();
+        return list.isEmpty(); //Metodo que testa se a lista está vazia
     }
 }
